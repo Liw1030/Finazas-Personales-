@@ -1,0 +1,26 @@
+{
+  "name": "prueba_tecnica",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "e": "^0.2.33",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-myconnection": "^1.0.4",
+    "js": "^0.1.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.3",
+    "prueba_tecnica": "file:"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
