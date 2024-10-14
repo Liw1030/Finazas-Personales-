@@ -5,16 +5,6 @@ CREATE DATABASE CrudfinanzasPersonales;
 USE CrudfinanzasPersonales;
 
 
---Creación de las tablas 
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) NOT NULL UNIQUE,
-    fecha_nacimiento DATE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
-    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 
 CREATE TABLE objetivos (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -49,11 +49,4 @@ app.listen(3000, () => {
   });
 
 
-//emepzando el servidor
- //Incializamos el servidor, cuando inicie el servidar mostrara 
-//un mensaje que nos diga que el servidor esta funcionando 
-
-
-
-//en la consola con node src/app.js verificamos el funcionamiento
 

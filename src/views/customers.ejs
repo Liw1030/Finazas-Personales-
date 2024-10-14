@@ -1,38 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://bootswatch.com/5/morph/bootstrap.min.css" rel="stylesheet">
-  <title>Registro de Usuarios</title>
+<%- include ("partials/_header") %> 
+    <style>
+        .box {
+            background-color: #f8f9fa;
+            border: 2px solid #dee2e6;
+            padding: 20px;
+            text-align: center;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+        }
+        .box-middle {
+            background-color: #d4edda;
+        }
+    </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1>Registro de Usuarios</h1>
-    <div class="card">
-      <div class="card-body">
-        <form action="/register" method="POST">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" required>
-          </div>
-          <div class="form-group">
-            <label for="correo">Correo</label>
-            <input type="email" class="form-control" id="correo" name="correo" required>
-          </div>
-          <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
-          </div>
-          <div class="form-group">
-            <label for="contrasena">Contraseña</label>
-            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Registrar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
 
+<div class="container mt-5">
+    <div class="row">
+        <!-- Caja 1: Objetivos -->
+        <div class="col-md-4 mb-4">
+            <div class="box">
+                <p>Objetivos</p>
+            </div>
+        </div>
+
+        <!-- Caja 2: Gastos Fijos -->
+        <div class="col-md-4 mb-4">
+            <div class="box">
+                <p>Gastos Fijos</p>
+            </div>
+        </div>
+
+        <!-- Caja del Medio: Dinero Disponible -->
+        <div class="col-md-4 mb-4">
+            <div class="box box-middle">
+                <p>Dinero Disponible</p>
+            </div>
+        </div>
+
+        <!-- Caja 3: Gastos Variables -->
+        <div class="col-md-4 mb-4">
+            <div class="box">
+                <p>Gastos Variables</p>
+            </div>
+        </div>
+
+        <!-- Caja 4: Total Gastado -->
+        <div class="col-md-4 mb-4">
+            <div class="box">
+                <p>Total Gastado</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ("partials/_footer") %>
