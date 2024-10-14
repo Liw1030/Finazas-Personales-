@@ -1,27 +1,38 @@
-<%- include ("partials/_header") %>
-
-<div class="conteiner">
-  <div class="row mt-5">
-    <div class="col-md-7">
-
-    </div>
-    <div class="col-md-5">
-      <form action="/add">
-        <div class="form-group">
-          <input type="text" name="nombre" placeholder="Nombre" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="text" name="correo" placeholder="Correo" class="form-control">
-        </div>
-        <div class="form-group">
-          <input type="date" name="fecha_nacimiento" placeholder="Fecha de Nacimiento" class="form-control">
-        </div>
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://bootswatch.com/5/morph/bootstrap.min.css" rel="stylesheet">
+  <title>Registro de Usuarios</title>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Registro de Usuarios</h1>
+    <div class="card">
+      <div class="card-body">
+        <form action="/register" method="POST">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" id="correo" name="correo" required>
+          </div>
+          <div class="form-group">
+            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
+          </div>
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</body>
+</html>
 
-
-
-
-<%- include ("partials/_footer") %>

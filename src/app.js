@@ -23,8 +23,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 //middlewares, funciones que se ejecutan antes de las peticiones de los usuariso
 app.use(morgan('dev'));
-
-
 //conectar a mysql
 app.use(myConnection(mysql,{
     host:'localhost',
@@ -33,6 +31,9 @@ app.use(myConnection(mysql,{
     port: 3306,
     database: 'CrudfinanzasPersonales'
 }, 'single'));
+app.use(express.urlencoded({extended: false}));
+
+
 
 //rutas
 app.use('/', customerRoutes)

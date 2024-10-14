@@ -22,4 +22,26 @@ controller.list = (req, res) => {
     });
 };
 
+
+controller.save = (req, res) => {
+    const data = req.body;
+    req.getConnection((err, conn) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error en la conexión a la base de datos' });
+        }
+
+        conn.query('INSERT INTO usuarios SET ?', [data], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: 'Error en la inserción de datos' });
+            }
+
+            console.log('Usuario registrado:', result);
+            // Redirige a la página home después del registro exitoso
+            res.redirect('/home');
+        });
+    });
+};
+
+
+
 module.exports = controller;
