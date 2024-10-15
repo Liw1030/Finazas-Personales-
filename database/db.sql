@@ -16,10 +16,9 @@ CREATE TABLE  gastos_fijos(
 
 CREATE TABLE gastos_variables (
     id INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único para cada gasto variable
-    nombre VARCHAR(100) NOT NULL,        -- Nombre del gasto variable
+    nombre_gastov VARCHAR(100) NOT NULL,        -- Nombre del gasto variable
     precio DECIMAL(10, 2) NOT NULL,      -- Precio del gasto variable
     fecha DATE NOT NULL,                  -- Fecha del gasto variable
-    total DECIMAL(10, 2) NOT NULL,       -- Total del gasto variable
     categoria ENUM('necesidad', 'deseo', 'ahorro') NOT NULL -- Categoría del gasto
 );
 

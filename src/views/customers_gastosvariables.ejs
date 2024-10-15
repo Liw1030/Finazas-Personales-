@@ -1,0 +1,51 @@
+<%- include ('partials/_header') %>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-secondary shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Registrar Gasto Variable</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/gastosv" method="POST">
+                        <!-- Nombre del gasto -->
+                        <div class="form-group mb-3">
+                            <label for="nombre_gastov" class="form-label">Nombre del Gasto:</label>
+                            <input type="text" id="nombre_gastov" name="nombre_gastov" class="form-control" placeholder="Ingrese el nombre del gasto" maxlength="100" required>
+                        </div>
+
+                        <!-- Precio -->
+                        <div class="form-group mb-3">
+                            <label for="precio" class="form-label">Precio:</label>
+                            <input type="number" id="precio" name="precio" class="form-control" step="0.01" placeholder="Ingrese el precio" required>
+                        </div>
+
+                        <!-- Fecha -->
+                        <div class="form-group mb-3">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                            <input type="date" id="fecha" name="fecha" class="form-control" required>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="form-group mb-4">
+                            <label for="categoria" class="form-label">Categoría:</label>
+                            <select id="categoria" name="categoria" class="form-select" required>
+                                <option value="necesidad">Necesidad</option>
+                                <option value="deseo">Deseo</option>
+                                <option value="ahorro">Ahorro</option>
+                            </select>
+                        </div>
+
+                        <!-- Botón de registrar -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-block">Registrar Gasto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

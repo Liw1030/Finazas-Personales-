@@ -1,35 +1,51 @@
-<%- include ('partials/_header')  %>
+<%- include ('partials/_header') %>
 
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md5">
-            <div class="card-body">
-                <form action="/updategastosf/<%= data.id %>" method="POST">
-                    <label for="nombre_gasto">Nombre del Gasto:</label>
-                    <input type="text" id="nombre_gasto" name="nombre_gasto" value="<%= data.nombre_gasto %>" required>
-                    <br><br>
-            
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="number" id="cantidad" name="cantidad" value="<%= data.cantidad %>" step="0.01" required>
-                    <br><br>
-            
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha" name="fecha" value="<%= data.fecha %>" required>
-                    <br><br>
-            
-                    <label for="categoria">Categoría:</label>
-                    <select id="categoria" name="categoria" value="<%= data.categoria %>"  required>
-                        <option value="necesidad">Necesidad</option>
-                        <option value="deseo">Deseo</option>
-                        <option value="ahorro">Ahorro</option>
-                    </select>
-                    <br><br>
-            
-                    <button type="submit" class="btn btn-primary m-4">Registrar Gasto</button>
-                </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-secondary shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Actualizar Gasto Fijo</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/updategastosf/<%= data.id %>" method="POST">
+                        <!-- Nombre del gasto -->
+                        <div class="form-group mb-3">
+                            <label for="nombre_gasto" class="form-label">Nombre del Gasto:</label>
+                            <input type="text" id="nombre_gasto" name="nombre_gasto" value="<%= data.nombre_gasto %>" class="form-control" placeholder="Ingrese el nombre del gasto" required>
+                        </div>
+
+                        <!-- Cantidad -->
+                        <div class="form-group mb-3">
+                            <label for="cantidad" class="form-label">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" value="<%= data.cantidad %>" class="form-control" step="0.01" placeholder="Ingrese la cantidad" required>
+                        </div>
+
+                        <!-- Fecha -->
+                        <div class="form-group mb-3">
+                            <label for="fecha" class="form-label">Fecha:</label>
+                            <input type="date" id="fecha" name="fecha" value="<%= data.fecha %>" class="form-control" required>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="form-group mb-4">
+                            <label for="categoria" class="form-label">Categoría:</label>
+                            <select id="categoria" name="categoria" class="form-select" required>
+                                <option value="necesidad" <%= data.categoria === 'necesidad' ? 'selected' : '' %>>Necesidad</option>
+                                <option value="deseo" <%= data.categoria === 'deseo' ? 'selected' : '' %>>Deseo</option>
+                                <option value="ahorro" <%= data.categoria === 'ahorro' ? 'selected' : '' %>>Ahorro</option>
+                            </select>
+                        </div>
+
+                        <!-- Botón de actualizar -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-block">Actualizar Gasto</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<%- include ('partials/_footer')  %>
+
