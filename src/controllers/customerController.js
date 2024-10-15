@@ -1,47 +1,80 @@
 const controller = {};
 
+
 controller.list = (req, res) => {
     req.getConnection((err, conn) => {
-        if (err) {
-            // Si hay un error en la conexión, envía la respuesta y termina la ejecución
-            return res.status(500).json({ error: 'Error en la conexión a la base de datos' });
-        }
-
-        conn.query('SELECT * FROM usuarios', (err, customers) => {
+        conn.query('SELECT * FROM gastos_fijos', (err, customers) => {
             if (err) {
-                // Si ocurre un error en la consulta, envía la respuesta y termina la ejecución
-                return res.status(500).json({ error: 'Error en la consulta a la base de datos' });
+                res.json(err);
             }
-            
-            console.log('Consulta exitosa, renderizando página...'); // Verifica si llega hasta aquí
-            // Si todo está bien, renderizamos la vista con los datos obtenidos
             res.render('customers', {
-                data: customers
+                data:customers
+            });
+        });
+    });
+}; 
+
+
+//Añadir gastos fijos
+controller.savegastosf = (req, res) => {
+    const data = req.body;
+
+    req.getConnection((err, conn) =>{
+        conn.query('INSERT INTO gastos_fijos set ?', [data], (err, customer) =>{
+            console.log(customer);
+            res.redirect('/');
+        });
+    });
+};
+
+//Actualizar o editar gastos fijos 
+controller.updategastosf = (req, res) => { 
+    const { id } = req.params;
+
+    req.getConnection((err, conn) => {
+        conn.query('SELECT * FROM gastos_fijos WHERE id = ?', [id], (err, results) => {
+            res.render('customers_editgastosfijos', {
+                data: results[0],
             });
         });
     });
 };
 
-
-controller.save = (req, res) => {
-    const data = req.body;
+controller.newgastosfijos = (req, res) =>{
+    const { id } = req.params;
+    const newGastof = req.body;
     req.getConnection((err, conn) => {
-        if (err) {
-            return res.status(500).json({ error: 'Error en la conexión a la base de datos' });
-        }
+        conn.query('UPDATE gastos_fijos set ? WHERE id = ?', [newGastof, id], (err, rows) =>{
+            res.redirect('/')
+        });
+    });
+};
 
-        conn.query('INSERT INTO usuarios SET ?', [data], (err, result) => {
-            if (err) {
-                return res.status(500).json({ error: 'Error en la inserción de datos' });
-            }
 
-            console.log('Usuario registrado:', result);
-            // Redirige a la página home después del registro exitoso
-            res.redirect('/home');
+//Eliminar gastos fijos 
+controller.deletegastosf = (req, res) => {
+    const { id } = req.params;
+
+    req.getConnection((err, conn) => {
+        conn.query('DELETE FROM gastos_fijos WHERE id = ?', [id], (err, results) => {
+            res.redirect('/');
         });
     });
 };
 
 
 
-module.exports = controller;
+
+//Añadir gastos variables 
+controller.savegastosV = (req, res) => {
+    const data = req.body;
+
+    req.getConnection((err, conn) =>{
+        conn.query('INSERT INTO gastos_variables set ?', [data], (err, customer) =>{
+            console.log(customer);
+            res.redirect('/');
+        });
+    });
+};
+
+module.exports = controller; 

@@ -1,61 +1,94 @@
-<%- include ("partials/_header") %> 
-    <style>
-        .box {
-            background-color: #f8f9fa;
-            border: 2px solid #dee2e6;
-            padding: 20px;
-            text-align: center;
-            height: 150px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-        }
-        .box-middle {
-            background-color: #d4edda;
-        }
-    </style>
-</head>
-<body>
+<%- include ('partials/_header')  %>
 
-<div class="container mt-5">
-    <div class="row">
-        <!-- Caja 1: Objetivos -->
-        <div class="col-md-4 mb-4">
-            <div class="box">
-                <p>Objetivos</p>
-            </div>
-        </div>
 
-        <!-- Caja 2: Gastos Fijos -->
-        <div class="col-md-4 mb-4">
-            <div class="box">
-                <p>Gastos Fijos</p>
-            </div>
-        </div>
-
-        <!-- Caja del Medio: Dinero Disponible -->
-        <div class="col-md-4 mb-4">
-            <div class="box box-middle">
-                <p>Dinero Disponible</p>
-            </div>
-        </div>
-
-        <!-- Caja 3: Gastos Variables -->
-        <div class="col-md-4 mb-4">
-            <div class="box">
-                <p>Gastos Variables</p>
-            </div>
-        </div>
-
-        <!-- Caja 4: Total Gastado -->
-        <div class="col-md-4 mb-4">
-            <div class="box">
-                <p>Total Gastado</p>
-            </div>
-        </div>
+<h1>Registrar Gastos Fijos</h1>
+    <div class="col-md-5">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>N°</th>
+                    <th>Nombre del gasto:</th>
+                    <th>Cantidad:</th>
+                    <th>Fecha:</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (data){ %>
+                    <% for (var i = 0; i < data.length; i++ ){ %>
+                        <tr>
+                            <td><%= (i + 1) %></td>
+                            <td><%= data[i].nombre_gasto %></td>
+                            <td><%= data[i].cantidad %></td>
+                            <td><%= data[i].fecha  %></td>
+                            <td><%= data[i].categoria %></td>
+                            <td>
+                                <a href="/deletegastos/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                                <a href="/updategastosf/<%= data[i].id %>" class="btn btn-info">Update</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                <% } %>
+            </tbody>
+        </table>
     </div>
-</div>
+    <div class="contenedor1 card border-secondary m-3" style="max-width: 20rem;">
+    <form action="/gastosf" method="POST">
+        <label for="nombre_gasto">Nombre del Gasto:</label>
+        <input type="text" id="nombre_gasto" name="nombre_gasto" required>
+        <br><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" step="0.01" required>
+        <br><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <br><br>
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria" required>
+            <option value="necesidad">Necesidad</option>
+            <option value="deseo">Deseo</option>
+            <option value="ahorro">Ahorro</option>
+        </select>
+        <br><br>
+
+        <button type="submit" class="btn btn-primary m-4">Registrar Gasto</button>
+    </form>
+    </div>
 
 
-<%- include ("partials/_footer") %>
+    <div class="cotenedor2 card border-secondary m-3" style="max-width: 20rem;">
+        <h1>Agregar Gasto Variable</h1>
+    <form action="/gastosV" method="POST"> <!-- Asegúrate de que la ruta sea la correcta -->
+        <label for="nombre">Nombre del Gasto:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <br><br>
+
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" required>
+        <br><br>
+
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required>
+        <br><br>
+
+        <label for="total">Total:</label>
+        <input type="number" id="total" name="total" step="0.01" required>
+        <br><br>
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" name="categoria" required>
+            <option value="necesidad">Necesidad</option>
+            <option value="deseo">Deseo</option>
+            <option value="ahorro">Ahorro</option>
+        </select>
+        <br><br>
+
+        <button type="submit">Agregar Gasto</button>
+    </form>
+    </div>
+    
+<%- include ('partials/_footer')  %>
