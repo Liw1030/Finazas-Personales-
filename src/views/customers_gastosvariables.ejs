@@ -1,51 +1,145 @@
-<%- include ('partials/_header') %>
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card border-secondary shadow-lg">
-                <div class="card-header bg-primary text-white text-center">
-                    <h4>Registrar Gasto Variable</h4>
-                </div>
+<!-- Registrar Gastos Fijos -->
+<h1 class="m-4 text-center">Registrar Gastos Fijos</h1>
+<div class="row">
+    <!-- Formulario -->
+    <div class="col-md-4">
+        <div class="card border-secondary shadow-lg m-3 p-3">
+            <form action="/gastosf" method="POST">
                 <div class="card-body">
-                    <form action="/gastosv" method="POST">
-                        <!-- Nombre del gasto -->
-                        <div class="form-group mb-3">
-                            <label for="nombre_gastov" class="form-label">Nombre del Gasto:</label>
-                            <input type="text" id="nombre_gastov" name="nombre_gastov" class="form-control" placeholder="Ingrese el nombre del gasto" maxlength="100" required>
-                        </div>
-
-                        <!-- Precio -->
-                        <div class="form-group mb-3">
-                            <label for="precio" class="form-label">Precio:</label>
-                            <input type="number" id="precio" name="precio" class="form-control" step="0.01" placeholder="Ingrese el precio" required>
-                        </div>
-
-                        <!-- Fecha -->
-                        <div class="form-group mb-3">
-                            <label for="fecha" class="form-label">Fecha:</label>
-                            <input type="date" id="fecha" name="fecha" class="form-control" required>
-                        </div>
-
-                        <!-- Categoría -->
-                        <div class="form-group mb-4">
-                            <label for="categoria" class="form-label">Categoría:</label>
-                            <select id="categoria" name="categoria" class="form-select" required>
-                                <option value="necesidad">Necesidad</option>
-                                <option value="deseo">Deseo</option>
-                                <option value="ahorro">Ahorro</option>
-                            </select>
-                        </div>
-
-                        <!-- Botón de registrar -->
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-success btn-block">Registrar Gasto</button>
-                        </div>
-                    </form>
+                    <h4 class="text-success mb-4">Registrar Gasto Fijo</h4>
+                    <div class="form-group mb-3">
+                        <label for="nombre_gasto">Nombre del Gasto:</label>
+                        <input type="text" id="nombre_gasto" name="nombre_gasto" class="form-control" placeholder="Ej: Alquiler" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cantidad">Cantidad (COP):</label>
+                        <input type="number" id="cantidad" name="cantidad" step="0.01" class="form-control" placeholder="Ej: 500000" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="categoria">Categoría:</label>
+                        <select id="categoria" name="categoria" class="form-control" required>
+                            <option value="necesidad">Necesidad</option>
+                            <option value="deseo">Deseo</option>
+                            <option value="ahorro">Ahorro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Registrar Gasto</button>
                 </div>
-            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla de Gastos Fijos -->
+    <div class="col-md-8">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover shadow-lg">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre del gasto</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data){ %>
+                        <% for (var i = 0; i < data.length; i++ ){ %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].nombre_gasto %></td>
+                                <td><%= data[i].cantidad %></td>
+                                <td><%= data[i].fecha %></td>
+                                <td><%= data[i].categoria %></td>
+                                <td>
+                                    <div class="d-flex justify-content-around">
+                                        <a href="/deletegastos/<%= data[i].id %>" class="btn btn-danger btn-sm w-50 mx-1">🗑 Eliminar</a>
+                                        <a href="/updategastosf/<%= data[i].id %>" class="btn btn-info btn-sm w-50 mx-1">✏ Actualizar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
+<!-- Registrar Gastos Variables -->
+<h1 class="m-4 text-center">Registrar Gastos Variables</h1>
+<div class="row">
+    <!-- Formulario -->
+    <div class="col-md-4">
+        <div class="card border-secondary shadow-lg m-3 p-3">
+            <form action="/gastosv" method="POST">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label for="nombre_gastov">Nombre:</label>
+                        <input type="text" id="nombre_gastov" name="nombre_gastov" class="form-control" placeholder="Ej: Compras de supermercado" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="precio">Precio (COP):</label>
+                        <input type="number" id="precio" name="precio" step="0.01" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="categoria">Categoría:</label>
+                        <select id="categoria" name="categoria" class="form-control" required>
+                            <option value="necesidad">Necesidad</option>
+                            <option value="deseo">Deseo</option>
+                            <option value="ahorro">Ahorro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Registrar Gasto</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
+    <!-- Tabla de Gastos Variables -->
+    <div class="col-md-8">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover shadow-lg">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Fecha</th>
+                        <th>Categoría</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data){ %>
+                        <% for (var i = 0; i < data.length; i++ ){ %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].nombre_gastov %></td>
+                                <td><%= data[i].precio %></td>
+                                <td><%= data[i].fecha %></td>
+                                <td><%= data[i].categoria %></td>
+                                <td>
+                                    <div class="d-flex justify-content-around">
+                                        <a href="/deletegastosv/<%= data[i].id %>" class="btn btn-danger btn-sm w-50 mx-1">🗑 Eliminar</a>
+                                        <a href="/updategastosv/<%= data[i].id %>" class="btn btn-info btn-sm w-50 mx-1">✏ Actualizar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

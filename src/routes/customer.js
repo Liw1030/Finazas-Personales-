@@ -31,6 +31,4 @@ router.get('/deletegastosv/:id', customerController.deletegastosv);
 
 
 
-
-
 module.exports = router;
